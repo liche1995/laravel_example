@@ -17,6 +17,10 @@ use Illuminate\Support\Facades\Route;
     return view('welcome');
 });*/
 
+Route::get("/sysinfo", function(){
+    phpinfo();
+});
+
 Route::get("/", function(){
     return view("first_index");
 });
