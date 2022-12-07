@@ -1,6 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+/*use controller */
+use App\Http\Controllers as Controllers;
+use App\Models as Models;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,6 +28,13 @@ Route::get("/", function(){
     return view("first_index");
 });
 
+Route::get("/7channel" , function(){
+    return Models\Post::all();
+});
+
+//with controller
+Route::get("/7ChC" ,[Controllers\PostQuery::class, "query"]);
+
 /* load blade layout page */
 Route::get("/load_layout_page", function(){
     $now_date = getdate(time());
@@ -33,8 +43,7 @@ Route::get("/load_layout_page", function(){
     return view("load_layout_page",["time" => $time_string]);
 });
 
-/*use controller */
-use App\Http\Controllers as Controllers;
+
 Route::get("/inspire", [Controllers\InspireController::class, "inspire"]);
 
 /* print access time direct*/
