@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\belongsTo;
 
 class Post extends Model
 {
@@ -14,5 +15,14 @@ class Post extends Model
     protected $fillable = ["content",];
     protected $hidden = [];
     protected $casts = [];
+
+    public function subject()
+    {
+        return $this->belongsTo(Subjects::class);
+    }
+    public function tags()
+    {
+        return $this->belongsToMany(Tags::class);
+    }
 }
 ?>

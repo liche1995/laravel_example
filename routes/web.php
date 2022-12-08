@@ -35,6 +35,13 @@ Route::get("/7channel" , function(){
 //with controller
 Route::get("/7ChC" ,[Controllers\PostQuery::class, "query"]);
 
+Route::get("/related",function(){
+    $target = Models\Subjects::find(1);
+    $posts = $target->posts;
+    return $posts;
+});
+
+
 /* load blade layout page */
 Route::get("/load_layout_page", function(){
     $now_date = getdate(time());
