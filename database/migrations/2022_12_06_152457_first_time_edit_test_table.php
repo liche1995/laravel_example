@@ -34,7 +34,7 @@ return new class extends Migration
             $table->string("something", 300)->change();
         });
         Schema::table('test', function(Blueprint $table){
-            $table->dropColunm("Y_or_N");
+            $table->dropColumn("Y_or_N");
         });
     }
 };

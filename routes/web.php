@@ -41,6 +41,12 @@ Route::get("/related",function(){
     return $posts;
 });
 
+Route::get("/tag",function(){
+    $target = Models\tags::find(1);
+    $posts = $target->posts;
+    return $posts;
+});
+
 
 /* load blade layout page */
 Route::get("/load_layout_page", function(){

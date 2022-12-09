@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\belongsTo;
+use Illuminate\Database\Eloquent\Relations\belongsToMany;
 
 class Post extends Model
 {
@@ -22,7 +23,8 @@ class Post extends Model
     }
     public function tags()
     {
-        return $this->belongsToMany(Tags::class);
+        //belongsToMany([table models], [intermediary table name], [foreign key])
+        return $this->belongsToMany(Tags::class, 'postandtag', 'tag_id');
     }
 }
 ?>
