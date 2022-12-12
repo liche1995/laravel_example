@@ -66,3 +66,7 @@ Route::get("/test",function(){
     . " " . $now_date["hours"] . ":" . $now_date["minutes"] . ":" . $now_date["seconds"] ;
     echo "right now is：" .$date_string;
 });
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
