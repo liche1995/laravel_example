@@ -16,17 +16,17 @@ use App\Models as Models;
 |
 */
 
-/*Route::get('/', function () {
+Route::get('/', function () {
     return view('welcome');
-});*/
+});
 
 Route::get("/sysinfo", function(){
     phpinfo();
 });
 
-Route::get("/", function(){
+/*Route::get("/", function(){
     return view("first_index");
-});
+});*/
 
 Route::get("/7channel" , function(){
     return Models\Post::all();
@@ -65,4 +65,13 @@ Route::get("/test",function(){
     $date_string =  $now_date["year"] . "/" .  $now_date["mon"] . "/" . $now_date["mday"] 
     . " " . $now_date["hours"] . ":" . $now_date["minutes"] . ":" . $now_date["seconds"] ;
     echo "right now is：" .$date_string;
+});
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+//test loggin
+Route::get('is_loggin', function(){
+    var_dump(Auth::check());
 });
