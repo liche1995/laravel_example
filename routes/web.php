@@ -47,6 +47,9 @@ Route::get("/tag",function(){
     return $posts;
 });
 
+// post restful
+Route::resource("/post", Controllers\postcontroller::class);
+
 
 /* load blade layout page */
 Route::get("/load_layout_page", function(){
