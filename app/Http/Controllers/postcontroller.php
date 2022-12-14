@@ -54,6 +54,7 @@ class postcontroller extends Controller
     public function show(Post $post)
     {
         //
+        return view("post.show", ["post"=>$post]);
     }
 
     /**
@@ -65,6 +66,7 @@ class postcontroller extends Controller
     public function edit(Post $post)
     {
         //
+        return view("post.edit", ["post"=>$post]);
     }
 
     /**
@@ -77,6 +79,9 @@ class postcontroller extends Controller
     public function update(Request $request, Post $post)
     {
         //
+        $post->content = $request->input('content');
+        $post->save();
+        echo "complete!";
     }
 
     /**
