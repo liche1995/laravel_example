@@ -5,6 +5,10 @@
     <label>內容：
         <textarea name="content"></textarea>
     </label></br>
-    <button type="submit">送出更新</button>
     <input type="submit" value="送出更新">
+</form>
+<form action="{{route('post.destroy', ['post'=>$post])}}" method="POST">
+    @method("DELETE")
+    @csrf
+    <input type="submit" value="刪除文章">
 </form>
