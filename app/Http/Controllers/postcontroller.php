@@ -6,7 +6,7 @@ use App\Models\Post;
 use Illuminate\Http\Request;
 
 class postcontroller extends Controller
-{
+{      
     /**
      * Display a listing of the resource.
      *
@@ -26,7 +26,13 @@ class postcontroller extends Controller
     public function create()
     {
         //
-        return view("post.create");
+        $user = \Auth::user();
+        if(is_null($user)){
+            return redirect(route('login'));
+        }
+        else{
+            return view("post.create");
+        }
     }
 
     /**
@@ -41,6 +47,7 @@ class postcontroller extends Controller
         $new_post = new Post;
         $new_post->content = $request->input("content");
         $new_post->subjects_id = 0;
+        $new_post->user_id = \Auth::id();
         $new_post->save();
         echo "complete";
     }
@@ -65,8 +72,21 @@ class postcontroller extends Controller
      */
     public function edit(Post $post)
     {
-        //
-        return view("post.edit", ["post"=>$post]);
+        // Auth's controller directory is same level with this controller, and Auth is a directory, so use Auth function shoud add '\'
+        $user = \Auth::user();
+        // check is login
+        if (is_null($user)){
+            return redirect(route('login'));
+        }
+        // check edit auth
+        else{
+            if($user->cant('update', $post)){
+                echo "you can't edit this post";
+            }
+            else{
+                return view("post.edit", ["post"=>$post]);
+            }
+        }
     }
 
     /**

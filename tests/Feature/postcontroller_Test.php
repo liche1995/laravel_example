@@ -18,7 +18,7 @@ class postcontroller_Test extends TestCase
     {
         $test_messagee = "test";
         //simulate html form transfer infomation by post
-        $this->post(route("post.store", ["content"=>$test_messagee]));
+        $this->post(route("post.store", ["content"=>$test_messagee])); //this line neet to edit, because post has login policy
         $this->assertDatabaseHas("post", ["content"=>$test_messagee]);
 
     }

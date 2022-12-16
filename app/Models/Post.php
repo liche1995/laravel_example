@@ -28,5 +28,9 @@ class Post extends Model
         //belongsToMany([table models], [intermediary table name], [foreign key])
         return $this->belongsToMany(Tags::class, 'postandtag', 'tag_id');
     }
+    public function author()
+    {
+        return $this->belongsTo(User::class, 'users', 'id');
+    }
 }
 ?>
