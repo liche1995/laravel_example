@@ -81,7 +81,7 @@ class postcontroller extends Controller
         // check edit auth
         else{
             if($user->cant('update', $post)){
-                echo "you can't edit this post";
+                return redirect(route("post.index"));
             }
             else{
                 return view("post.edit", ["post"=>$post]);
@@ -101,7 +101,7 @@ class postcontroller extends Controller
         //
         $post->content = $request->input('content');
         $post->save();
-        echo "complete!";
+        return redirect(route('post.index'));
     }
 
     /**
