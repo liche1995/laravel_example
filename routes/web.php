@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Log;
 /*use controller */
 use App\Http\Controllers as Controllers;
 use App\Models as Models;
@@ -75,6 +76,12 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 //test loggin
-Route::get('is_loggin', function(){
+Route::get('/is_loggin', function(){
     var_dump(Auth::check());
 });
+
+//log test
+Route::get('/log_test', function(){
+    Log::info('has been active');
+});
+?>

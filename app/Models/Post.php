@@ -32,5 +32,18 @@ class Post extends Model
     {
         return $this->belongsTo(User::class, 'users', 'id');
     }
+
+
+    //encrypt
+    public function getContentAttribute($content)
+    {
+        return decrypt($content);
+    }
+    
+    public function setContentAttribute($content)
+    {
+        $this->attributes['content'] = encrypt($content);
+    }
+
 }
 ?>

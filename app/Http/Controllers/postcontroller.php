@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Post;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 class postcontroller extends Controller
 {      
@@ -76,11 +77,13 @@ class postcontroller extends Controller
         $user = \Auth::user();
         // check is login
         if (is_null($user)){
+            Log::channel("post")->info("Guest user try to edit post:". $post->id );
             return redirect(route('login'));
         }
         // check edit auth
         else{
             if($user->cant('update', $post)){
+                Log::channel("post")->info("Wrong user ". $user->id ." try to edit post:". $post->id );
                 return redirect(route("post.index"));
             }
             else{
