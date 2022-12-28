@@ -84,4 +84,14 @@ Route::get('/is_loggin', function(){
 Route::get('/log_test', function(){
     Log::info('has been active');
 });
+
+//login fail test
+Route::get('/login_failed', function(){
+    return __("auth.failed");
+});
+
+Route::get('/throttle', function(){
+    return __("auth.throttle", ["seconds"=>10]);
+});
+
 ?>
